@@ -12,7 +12,7 @@ import 'moment/locale/pt-br'
 
 import commonStyles from '../commonStyles'
 import todayImage from '../../assets/imgs/today.jpg'
-import Task from '../components/Task'
+import Student from '../components/Student'
 import AddTask from './AddTask'
 
 const initialState = {
@@ -71,6 +71,8 @@ export default class TaskList extends Component {
     tasks.push({
       id: Math.random(),
       desc: newTask.desc,
+      age: newTask.age,
+      class: newTask.class,
       estimateAt: newTask.date,
       doneAt: null,
     })
@@ -110,7 +112,7 @@ export default class TaskList extends Component {
         <View style={styles.taskList}>
           <FlatList data={this.state.visibleTask}
             keyExtractor={item => `${item.id}`}
-            renderItem={({ item }) => <Task {...item} onToggleTask={this.toggleTask} onDelete={this.deleteTask} />}
+            renderItem={({ item }) => <Student {...item} onToggleTask={this.toggleTask} onDelete={this.deleteTask} />}
           />
         </View>
         <TouchableOpacity

@@ -54,6 +54,8 @@ export default props => {
         </TouchableWithoutFeedback>
         <View>
           <Text style={[styles.desc, doneOrNotStyle]}>{props.desc}</Text>
+          <Text style={styles.date}>{props.age}</Text>
+          <Text style={styles.date}>{props.class}</Text>
           <Text style={styles.date}>{formattedDate}</Text>
         </View>
       </View >

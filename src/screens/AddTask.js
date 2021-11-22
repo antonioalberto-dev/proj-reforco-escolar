@@ -10,7 +10,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'
 
 import commonStyles from '../commonStyles'
 
-const initialState = { desc: '', date: new Date(), showDatePicker: false }
+const initialState = { desc: '', age: '', class: '', date: new Date(), showDatePicker: false }
 
 export default class AddTask extends Component {
 
@@ -21,6 +21,8 @@ export default class AddTask extends Component {
   save = () => {
     const newTask = {
       desc: this.state.desc,
+      age: this.state.age,
+      class: this.state.class,
       date: this.state.date,
     }
 
@@ -70,9 +72,21 @@ export default class AddTask extends Component {
           <Text style={styles.header}>Nova tarefa</Text>
           <TextInput
             style={styles.input}
-            placeholder="Informe a descrição..."
+            placeholder="Nome do aluno"
             onChangeText={desc => this.setState({ desc: desc })}
             value={this.state.desc}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Idade do aluno"
+            onChangeText={text => this.setState({ age: text })}
+            value={this.state.age}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Turma do aluno"
+            onChangeText={text => this.setState({ class: text })}
+            value={this.state.class}
           />
           {this.getDatePicker()}
           <View style={styles.buttons}>
@@ -112,8 +126,9 @@ const styles = StyleSheet.create({
   },
   input: {
     fontFamily: commonStyles.fontfamily,
-    height: 40,
-    margin: 15,
+    height: 50,
+    marginHorizontal: 5,
+    marginVertical: 10,
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#e3e3e3',
