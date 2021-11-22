@@ -69,7 +69,7 @@ export default class AddTask extends Component {
           </View>
         </TouchableWithoutFeedback>
         <View style={styles.container}>
-          <Text style={styles.header}>Nova tarefa</Text>
+          <Text style={styles.header}>Novo aluno</Text>
           <TextInput
             style={styles.input}
             placeholder="Nome do aluno"

@@ -11,7 +11,7 @@ import moment from 'moment'
 import 'moment/locale/pt-br'
 
 import commonStyles from '../commonStyles'
-import todayImage from '../../assets/imgs/today.jpg'
+import todayImage from '../../assets/imgs/fundo.jpg'
 import Student from '../components/Student'
 import AddTask from './AddTask'
 
@@ -86,7 +86,8 @@ export default class TaskList extends Component {
   }
 
   render() {
-    const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
+    const todayComplete = moment().locale('pt-br').format('D [de] MMMM')
+    const dayToday = moment().locale('pt-br').format('dddd')
     return (
       <View style={styles.container}>
         <AddTask
@@ -105,8 +106,8 @@ export default class TaskList extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.titleBar}>
-            <Text style={styles.title}>Hoje</Text>
-            <Text style={styles.subtitle}>{today}</Text>
+            <Text style={styles.title}>{dayToday}</Text>
+            <Text style={styles.subtitle}>{todayComplete}</Text>
           </View>
         </ImageBackground>
         <View style={styles.taskList}>
