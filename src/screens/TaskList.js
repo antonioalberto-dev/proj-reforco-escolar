@@ -23,6 +23,33 @@ const initialState = {
 }
 
 export default class TaskList extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      postId: null,
+    };
+  }
+
+  async componentDidMount() {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        age: '20',
+        'class-scholl': 'Ensino Superior',
+        name: 'Alberto',
+      }),
+    };
+    const response = await
+      fetch('https://proj-reforcoescolar-default-rtdb.firebaseio.com/alunos/.json',
+        requestOptions);
+    const data = await response.json();
+    this.setState({ postId: data.id });
+  }
+
   state = {
     ...initialState
   }
@@ -97,19 +124,30 @@ export default class TaskList extends Component {
         />
         <ImageBackground source={todayImage}
           style={styles.background}>
-          <View style={styles.iconBar}>
-            <TouchableOpacity onPress={this.toggleFilter}>
-              <Icon
-                name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
-                size={30} color={commonStyles.colors.secondary}
-              />
-            </TouchableOpacity>
+          <View style={styles.navStart}>
+            <View style={styles.iconBar}>
+              <TouchableOpacity onPress={this.toggleFilter}>
+                <Icon
+                  name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
+                  size={30} color={commonStyles.colors.secondary}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.logout}>
+              <TouchableOpacity>
+                <Text style={styles.textLogout}>Sair</Text>
+                {/* <Icon
+                  name='chevron-circle-right'
+                  size={40} color={commonStyles.colors.secondary}
+                /> */}
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.titleBar}>
             <Text style={styles.title}>{dayToday}</Text>
             <Text style={styles.subtitle}>{todayComplete}</Text>
           </View>
-        </ImageBackground>
+        </ImageBackground >
         <View style={styles.taskList}>
           <FlatList data={this.state.visibleTask}
             keyExtractor={item => `${item.id}`}
@@ -127,7 +165,7 @@ export default class TaskList extends Component {
             size={20}
           />
         </TouchableOpacity>
-      </View>
+      </View >
     )
   }
 }
@@ -160,11 +198,28 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 30,
   },
-  iconBar: {
+  navStart: {
     flexDirection: 'row',
+  },
+  iconBar: {
     marginHorizontal: 20,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     marginTop: Platform.OS === 'ios' ? 30 : 10,
+  },
+  logout: {
+    justifyContent: 'flex-end',
+    marginStart: 260,
+    marginTop: 10,
+    width: '24%',
+    alignItems: 'center',
+  },
+  textLogout: {
+    color: "#fff",
+    backgroundColor: commonStyles.colors.today,
+    padding: 15,
+    borderRadius: 40,
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 16,
   },
   addButton: {
     position: 'absolute',
