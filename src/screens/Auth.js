@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import {
   ImageBackground, Text, StyleSheet,
   View, TextInput, TouchableOpacity,
-  Platform, Alert
+  Platform, Alert, Image
 } from 'react-native'
 
-import backgroundImage from '../../assets/imgs/login.jpg'
-import logo from '../../assets/imgs/logo.png'
+import backgroundImage from '../../assets/imgs/auth.png'
 import commonStyles from '../commonStyles'
 
 export default class Auth extends Component {
@@ -82,6 +81,7 @@ const styles = StyleSheet.create({
     fontFamily: commonStyles.fontfamily,
     color: commonStyles.colors.secondary,
     fontSize: 50,
+    marginBottom: 10,
   },
   subtitle: {
     fontFamily: commonStyles.fontfamily,
@@ -94,19 +94,21 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     padding: 20,
     width: '90%',
-    // borderRadius: 15,
+    borderRadius: 15,
   },
   input: {
     marginTop: 10,
     backgroundColor: "#fff",
     padding: Platform.OS == 'ios' ? 10 : 10,
-    // borderRadius: 50,
+    borderRadius: 40,
+    paddingStart: 23,
   },
   button: {
-    backgroundColor: '#080',
+    backgroundColor: commonStyles.colors.today,
     marginTop: 10,
     padding: 10,
     alignItems: 'center',
+    borderRadius: 8,
   },
   buttonText: {
     fontFamily: commonStyles.fontfamily,
