@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: commonStyles.fontfamily,
     color: commonStyles.colors.secondary,
-    fontSize: 50,
+    fontSize: 30,
     marginLeft: 20,
     marginBottom: 20,
   },
